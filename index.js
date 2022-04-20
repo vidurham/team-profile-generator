@@ -42,6 +42,7 @@ function addTeam() {
             })
         }
         else {
+            
             writeFile(generatePage(team));
         }
     })

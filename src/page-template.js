@@ -1,50 +1,60 @@
-const generateTeam = teamArr => {
-    console.log(teamArr)
-    if (teamArr.Manager) {
-    return `
-        ${teamArr
-            .map(({ name, id, email, role, office }) => {
-                    return `
-                        <h1> ${name} </h1>
-                        <h2> ${id} </h2>
-                        <h2> ${email} </h2>
-                        <h2> ${role} </h2>
-                        <h2> ${office} </h2>`;
-                })
-            }
-        `
-    }
 
-    if (teamArr.Engineer) {
-    return `
-        ${teamArr
-            .map(({ name, id, email, role, github }) => {
+function generateTeam(teamArr) {
+    console.log(teamArr)
+    let count = 0
+    while (count<teamArr.length) {
+        if (teamArr[count].role === "Manager"){
+            count += 1;
+            return `
+                ${teamArr
+                    .map(({ name, role, id, email, officeNumber }) => {
                     return `
-                        <h1> ${name} </h1>
-                        <h2> ${id} </h2>
-                        <h2> ${email} </h2>
-                        <h2> ${role} </h2>
-                        <h2> ${github} </h2>`;
-                })
+                    <h1> ${name} </h1>
+                    <h2> ${role} </h2>
+                    <h2> ${id} </h2>
+                    <h2> ${email} </h2>
+                    <h2> ${officeNumber} </h2>`
+                    })
+                    .join('')
             }
         `
-    }
-    if (teamArr.Intern) {
-    return `
-        ${teamArr
-            .map(({ name, id, email, role, school }) => {
+        }
+        else if (teamArr[count].role === "Engineer"){
+            console.log("Engineer being built");
+            console.log(teamArr[count].github)
+            count += 1;
+            return `
+                ${teamArr
+                    .map(({ name, role, id, email, Github }) => {
                     return `
-                        <h1> ${name} </h1>
-                        <h2> ${id} </h2>
-                        <h2> ${email} </h2>
-                        <h2> ${role} </h2>
-                        <h2> ${school} </h2>`;
-                })
-            }
+                    <h1> ${name} </h1>
+                    <h2> ${role} </h2>
+                    <h2> ${id} </h2>
+                    <h2> ${email} </h2>
+                    <h2> ${teamArr[count].github} </h2>`
+                    })
+                    .join('')
+                }
         `
+        }
+        else if (teamArr[count].role === "Intern"){
+            count += 1;
+            return `
+                ${teamArr
+                    .map(({ name, role, id, email, School }) => {
+                    return `
+                    <h1> ${name} </h1>
+                    <h2> ${role} </h2>
+                    <h2> ${id} </h2>
+                    <h2> ${email} </h2>
+                    <h2> ${School} </h2>`
+                    })
+                    .join('')
+                }
+        `
+        }
     }
-}            
-                
+}
 
 module.exports = team => {
 
@@ -72,4 +82,4 @@ module.exports = team => {
     </body>
     </html>
     `
-    }
+}
