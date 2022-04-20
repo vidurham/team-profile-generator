@@ -1,64 +1,61 @@
-
-function generateTeam(teamArr) {
-    console.log(teamArr)
-    let count = 0
-    while (count<teamArr.length) {
-        if (teamArr[count].role === "Manager"){
-            count += 1;
-            return `
-                ${teamArr
-                    .map(({ name, role, id, email, officeNumber }) => {
-                    return `
-                    <h1> ${name} </h1>
-                    <h2> ${role} </h2>
-                    <h2> ${id} </h2>
-                    <h2> ${email} </h2>
-                    <h2> ${officeNumber} </h2>`
-                    })
-                    .join('')
-            }
-        `
-        }
-        else if (teamArr[count].role === "Engineer"){
-            console.log("Engineer being built");
-            console.log(teamArr[count].github)
-            count += 1;
-            return `
-                ${teamArr
-                    .map(({ name, role, id, email, Github }) => {
-                    return `
-                    <h1> ${name} </h1>
-                    <h2> ${role} </h2>
-                    <h2> ${id} </h2>
-                    <h2> ${email} </h2>
-                    <h2> ${teamArr[count].github} </h2>`
-                    })
-                    .join('')
-                }
-        `
-        }
-        else if (teamArr[count].role === "Intern"){
-            count += 1;
-            return `
-                ${teamArr
-                    .map(({ name, role, id, email, School }) => {
-                    return `
-                    <h1> ${name} </h1>
-                    <h2> ${role} </h2>
-                    <h2> ${id} </h2>
-                    <h2> ${email} </h2>
-                    <h2> ${School} </h2>`
-                    })
-                    .join('')
-                }
-        `
-        }
-    }
+const buildManagerCard = function(manager) {
+    console.log(manager)
+    return `
+        <h1> ${manager.name} </h1>
+        <h2> ${manager.role} </h2>
+        <h2> ${manager.id} </h2>
+        <h2> ${manager.email} </h2>
+        <h2> ${manager.officeNumber} </h2>`
 }
 
-module.exports = team => {
-
+const buildEngineerCard = function(engineer) {
     return `
+        <h1> ${engineer.name} </h1>
+        <h2> ${engineer.role} </h2>
+        <h2> ${engineer.id} </h2>
+        <h2> ${engineer.email} </h2>
+        <h2> ${engineer.github} </h2>`
+            
+}
+
+const buildInternCard = function(intern) {
+    return `
+        <h1> ${intern.name} </h1>
+        <h2> ${intern.role} </h2>
+        <h2> ${intern.id} </h2>
+        <h2> ${intern.email} </h2>
+        <h2> ${intern.school} </h2>`
+}
+generateTeam = (data) => {
+
+    cardArray = [];
+
+    for (let i =0; i < data.length; i++) {
+        const employee = data[i];
+        const role = employee.getRole();
+
+        if (role === "Manager") {
+            const managerCard = buildManagerCard(employee);
+            cardArray.push(managerCard);
+        }
+        if (role === "Engineer") {
+            const engineerCard = buildEngineerCard(employee);
+            cardArray.push(engineerCard)
+        }
+        if (role === "Intern") {
+            const internCard = buildInternCard(employee);
+            cardArray.push(internCard)
+        }
+    }
+
+    const cards = cardArray.join('')
+
+    const generatePage = generateHTML(cards);
+    return generatePage;
+}
+    
+const generateHTML = function(cards) {   
+return `
     <!DOCTYPE html>
     <html lang="en">
     
@@ -72,14 +69,17 @@ module.exports = team => {
     
     <body>
         <header>
-        <div class="container flex-row justify-space-between align-center py-3">
-            <h1 class="page-title text-secondary bg-dark py-2 px-3">My Team</h1>
-        </div>
+            <div class="container flex-row justify-space-between align-center py-3">
+                <h1 class="page-title text-secondary bg-dark py-2 px-3">My Team</h1>
+            </div>
         </header>
         <main class="container my-5">
-        ${generateTeam(team)}
+            ${cards}
         </main>
     </body>
     </html>
     `
 }
+
+
+module.exports = generateTeam;
