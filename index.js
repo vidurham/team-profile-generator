@@ -1,10 +1,12 @@
 const inquirer = require('inquirer');
+const generatePage = require('./src/page-template')
 const fs = require('fs');
 
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const { ADDRGETNETWORKPARAMS } = require('dns');
+const pageTemplate = require('./src/page-template');
 
 const team = [];
 
@@ -40,7 +42,7 @@ function addTeam() {
             })
         }
         else {
-            console.log(team)
+            writeFile(generatePage(team));
         }
     })
 }
@@ -134,5 +136,21 @@ function getManager() {
         addTeam();
     })
 }
+
+const writeFile = fileContent => {
+    return new Promise((resolve, reject) => {
+      fs.writeFile('./dist/index.html', fileContent, err => {
+        if (err) {
+          reject(err);
+          return;
+        }
+  
+        resolve({
+          ok: true,
+          message: 'File created!'
+        });
+      });
+    });
+  };
 
 getManager();
