@@ -10,7 +10,7 @@ const buildManagerCard = function(manager) {
                     <div class="column has-text-centered">
                         <p class="title is-4">${manager.name}</p>
                         <p class="subtitle is-6">Manager</p>
-                        <p class="subtitle is-6">Email: ${manager.email}</p>
+                        <p class="subtitle is-6">Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
                         <p class="subtitle is-6">ID: ${manager.id}</p>
                         <p class="subtitle is-6">Office Number: ${manager.officeNumber}</p>
                     </div>
@@ -30,9 +30,9 @@ const buildEngineerCard = function(engineer) {
                     <div class="column has-text-centered">
                         <p class="title is-4">${engineer.name}</p>
                         <p class="subtitle is-6">Engineer</p>
-                        <p class="subtitle is-6">Email: ${engineer.email}</p>
+                        <p class="subtitle is-6">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
                         <p class="subtitle is-6">ID: ${engineer.id}</p>
-                        <p class="subtitle is-6">Github: ${engineer.github}</p>
+                        <p class="subtitle is-6">Github: <a href="https://github.com/${engineer.github}">${engineer.github}</a></p>
                     </div>
                 </div>
             </div>`
@@ -51,7 +51,7 @@ const buildInternCard = function(intern) {
                     <div class="column has-text-centered">
                     <p class="title is-4">${intern.name}</p>
                     <p class="subtitle is-6">Intern</p>
-                    <p class="subtitle is-6">Email: ${intern.email}</p>
+                    <p class="subtitle is-6">Email: <a href="mailto:${intern.email}">${intern.email}</a></p>
                     <p class="subtitle is-6">ID: ${intern.id}</p>
                     <p class="subtitle is-6">School: ${intern.school}</p>
                     </div>
