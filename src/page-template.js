@@ -1,30 +1,62 @@
 const buildManagerCard = function(manager) {
-    console.log(manager)
     return `
-        <h1> ${manager.name} </h1>
-        <h2> ${manager.role} </h2>
-        <h2> ${manager.id} </h2>
-        <h2> ${manager.email} </h2>
-        <h2> ${manager.officeNumber} </h2>`
+            <div class="card column is-one-quarter my-3 mx-3">
+                <div class="container">
+                    <div class="column has-text-centered">
+                        <span class="icon">
+                            <i class="fas fa-book-open-reader fa-3x"></i>
+                        </span>
+                    </div>
+                    <div class="column has-text-centered">
+                        <p class="title is-4">${manager.name}</p>
+                        <p class="subtitle is-6">Manager</p>
+                        <p class="subtitle is-6">Email: ${manager.email}</p>
+                        <p class="subtitle is-6">ID: ${manager.id}</p>
+                        <p class="subtitle is-6">Office Number: ${manager.officeNumber}</p>
+                    </div>
+                </div>
+            </div>`
 }
 
 const buildEngineerCard = function(engineer) {
     return `
-        <h1> ${engineer.name} </h1>
-        <h2> ${engineer.role} </h2>
-        <h2> ${engineer.id} </h2>
-        <h2> ${engineer.email} </h2>
-        <h2> ${engineer.github} </h2>`
+            <div class="card column is-one-quarter my-3 mx-3">
+                <div class="container">
+                    <div class="column has-text-centered">
+                        <span class="icon">
+                            <i class="fas fa-gear fa-3x"></i>
+                        </span>
+                    </div>
+                    <div class="column has-text-centered">
+                        <p class="title is-4">${engineer.name}</p>
+                        <p class="subtitle is-6">Engineer</p>
+                        <p class="subtitle is-6">Email: ${engineer.email}</p>
+                        <p class="subtitle is-6">ID: ${engineer.id}</p>
+                        <p class="subtitle is-6">Github: ${engineer.github}</p>
+                    </div>
+                </div>
+            </div>`
             
 }
 
 const buildInternCard = function(intern) {
     return `
-        <h1> ${intern.name} </h1>
-        <h2> ${intern.role} </h2>
-        <h2> ${intern.id} </h2>
-        <h2> ${intern.email} </h2>
-        <h2> ${intern.school} </h2>`
+            <div class="card column is-one-quarter my-3 mx-3">
+                <div class="container">
+                    <div class="column has-text-centered">
+                        <span class="icon">
+                            <i class="fas fa-graduation-cap fa-3x"></i>
+                        </span>
+                    </div>
+                    <div class="column has-text-centered">
+                    <p class="title is-4">${intern.name}</p>
+                    <p class="subtitle is-6">Intern</p>
+                    <p class="subtitle is-6">Email: ${intern.email}</p>
+                    <p class="subtitle is-6">ID: ${intern.id}</p>
+                    <p class="subtitle is-6">School: ${intern.school}</p>
+                    </div>
+                </div>
+            </div>`
 }
 generateTeam = (data) => {
 
@@ -65,17 +97,21 @@ return `
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>My Team</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     
     <body>
-        <header>
-            <div class="container flex-row justify-space-between align-center py-3">
-                <h1 class="page-title text-secondary bg-dark py-2 px-3">My Team</h1>
+        <section class="hero is-link">
+            <div class="hero-body has-text-centered">
+                <p class="title">
+                    My Team
+                </p>
             </div>
-        </header>
-        <main class="container my-5">
+        </section>
+        <section class="container-fluid my-5 columns is-flex-wrap-wrap is-justify-content-center">
             ${cards}
-        </main>
+        </section>
     </body>
     </html>
     `
